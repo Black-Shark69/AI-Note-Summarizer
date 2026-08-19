@@ -1,147 +1,121 @@
 # AI Note Summarizer
-
-An AI-powered application that transforms lengthy notes, articles, and study materials into concise, meaningful, and easy-to-understand summaries.
-
----
-
-## Team Information
-
-**Team Name:** CSE4104-7C-T06
-
-### Team Members
-
-* **S M Shamun Ishmam** (Team Leader)
-* **Jinat Rafia Jeba**
-* **Rasik Zaman**
+### CSE4104-7C-T06 | Section: 7C | Northern University of Business & Technology, Khulna
 
 ---
 
-## Objectives
+## Project Overview
+AI Note Summarizer is a web-based academic assistant designed for students. It uses **Google Gemini AI** to convert lengthy lecture notes, PDFs, and study materials into concise, structured summaries — saving students valuable study time.
 
-* Convert long notes into concise summaries.
-* Help students save study time.
-* Improve learning efficiency and productivity.
-* Extract key information from large texts.
-* Provide a user-friendly note summarization platform.
+---
+
+## Team Members
+| Name | Student ID | Role |
+|---|---|---|
+| Jinat Rafia Jeba | 11230121069 | Team Leader |
+| Md. Rasik Zaman | 11230121163 | Member |
+| Sheikh Shamun Ishmam | 11230121148 | Member |
+
+---
+
+## Tech Stack
+| Layer | Technology |
+|---|---|
+| Frontend | Flutter (Dart) |
+| Backend | Node.js + Express.js |
+| Database | MySQL 8.0 |
+| AI | Google Gemini AI (gemini-1.5-flash) |
+| Authentication | JWT + bcrypt |
+
+---
+
+## AI Integration
+- **Platform:** Google Gemini AI
+- **Model:** gemini-1.5-flash
+- **Feature:** Intelligent note summarization
+- **Prompt Engineering:** Custom academic prompts for Short, Medium, and Detailed summaries
+- **Error Handling:** Rate limits, network failures, invalid responses
 
 ---
 
 ## Features
 
-* AI-powered text summarization
-* Long text and note analysis
-* Quick summary generation
-* Clean and responsive user interface
-* Save and manage summaries
-* User authentication system
-* Document upload support (PDF/DOCX)
-* Summary history tracking
-* Multi-language support (Future Enhancement)
+### Student
+- Register / Login / Logout
+- Upload or paste notes
+- Generate AI summary (Short / Medium / Detailed)
+- View summary history
+- Delete summaries
+- Edit profile
+
+### Admin
+- View all users
+- Monitor system activity
+- View summary logs
 
 ---
 
-## Technology Stack
+## Project Structure
 
-### Frontend
-
-* HTML5
-* CSS3
-* JavaScript
-
-### Backend
-
-* Python
-* Flask
-
-### AI & NLP
-
-* Natural Language Processing (NLP)
-* Hugging Face Transformers
-* OpenAI API (Optional)
-
-### Database
-
-* SQLite
-
-### Version Control
-
-* Git
-* GitHub
-
----
-
-## Repository Structure
-
-```text
+```
 AI-Note-Summarizer/
-│
-├── frontend/
-│   ├── html/
-│   ├── css/
-│   └── js/
-│
-├── backend/
-│   ├── app.py
-│   ├── routes/
-│   ├── models/
-│   └── services/
-│
-├── dataset/
-│
-├── documentation/
-│   ├── SRS.pdf
-│   └── Project_Proposal.pdf
-│
-├── screenshots/
-│
-├── requirements.txt
-│
+├── frontend/          # Flutter app
+├── backend/           # Node.js + Express API
+├── database/          # MySQL schema
+├── ai/                # Prompt examples
+├── documentation/     # Reports
+├── screenshots/       # App screenshots
 └── README.md
 ```
 
 ---
 
-## Project Workflow
-
-1. User submits text or uploads a document.
-2. The system processes the input using NLP techniques.
-3. The AI model generates a concise summary.
-4. The summary is displayed to the user.
-5. Users can save and review previous summaries.
-
----
-
-## Current Progress
-
-* [x] Project Proposal Completed
-* [x] GitHub Repository Created
-* [x] Team Members Added
-* [x] README Documentation Added
-* [x] Software Requirements Specification (SRS)
-* [ ] UI/UX Design
-* [ ] Backend Development
-* [ ] AI Model Integration
-* [ ] Testing & Validation
-* [ ] Final Deployment
+## API Endpoints
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | /api/auth/register | Register user |
+| POST | /api/auth/login | Login user |
+| POST | /api/notes | Save note |
+| GET | /api/notes | Get all notes |
+| POST | /api/summaries | Save summary |
+| GET | /api/summaries | Get all summaries |
+| DELETE | /api/summaries/:id | Delete summary |
 
 ---
 
-## Future Enhancements
+## Setup Instructions
 
-* Voice-to-Text Summarization
-* Bangla Language Support
-* AI-powered Keyword Extraction
-* Mobile Application Version
-* Cloud Deployment
-* Personalized Study Assistant Features
+### Backend
+```
+cd backend
+npm install
+node src/server.js
+```
+
+### Frontend
+```
+cd frontend
+flutter pub get
+flutter run
+```
+
+### Database
+```
+Run database/schema.sql in MySQL
+```
 
 ---
 
-## Course Information
+## Environment Variables (.env)
+```
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=ai_note_summarizer
+JWT_SECRET=your_secret_key
+PORT=5000
+```
 
-**Course:** CSE4104 - Software Engineering & AI Project
+---
 
-**Project Title:** AI Note Summarizer
-
-**Team:** CSE4104-7C-T06
-
+## GitHub Repository
+https://github.com/Black-Shark69/AI-Note-Summarizer
