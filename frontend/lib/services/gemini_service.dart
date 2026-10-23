@@ -9,7 +9,7 @@ class GeminiService {
   }) async {
     try {
       final model = GenerativeModel(
-        model: 'gemini-3.5-flash',
+        model: 'gemini-3.8-flash',
         apiKey: _apiKey,
       );
 
