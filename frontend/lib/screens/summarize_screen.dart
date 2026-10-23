@@ -67,10 +67,10 @@ class _SummarizeScreenState extends State<SummarizeScreen> {
       if (noteRes['noteId'] != null) {
         // Generate real AI summary with Gemini
         final summary = await GeminiService.summarize(
-          content: _contentController.text,
-          length: _selectedLength,
-        );
-
+  content: _contentController.text,
+  length: _selectedLength,
+  token: token,
+);
         // Save summary to backend
         await ApiService.saveSummary(
           token,
