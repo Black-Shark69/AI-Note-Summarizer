@@ -1,7 +1,7 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 class GeminiService {
-  static const String _apiKey = 'AQ.Ab8RN6KkWcZ664dNYqVdOnLB45ai_IiJkGSZ0SyDOJYblWLq4w';
+  static const String _apiKey = 'AQ.Ab8RN6KpjGyJu7XPziCDqxLlk1yDCMlCLYE9U77ENhYMf0-cOA';
 
   static Future<String> summarize({
     required String content,
