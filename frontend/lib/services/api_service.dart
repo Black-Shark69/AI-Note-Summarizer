@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static const String baseUrl = 'http://localhost:5000/api';
+  static const String baseUrl = 'https://ai-note-summarizer-272z.onrender.com/api';
 
   // Register
   static Future<Map<String, dynamic>> register(

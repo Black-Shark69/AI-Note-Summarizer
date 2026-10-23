@@ -75,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (token == null) return;
     try {
       await http.delete(
-        Uri.parse('http://localhost:5000/api/summaries/$id'),
+        Uri.parse('https://ai-note-summarizer-272z.onrender.com/api/summaries/$id'),
         headers: {'authorization': token},
       );
       await _loadProfile();
