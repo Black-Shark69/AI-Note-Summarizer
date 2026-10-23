@@ -1,36 +1,41 @@
-import 'package:google_generative_ai/google_generative_ai.dart';
+
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class GeminiService {
-  static const String _apiKey = 'AQ.Ab8RN6Lmzk7j-RGOSRMVNk80YdrQ-R_2uCdpiNrgevfsGSYkWg';
+  static const String _baseUrl =
+      'https://ai-note-summarizer-272z.onrender.com';
 
   static Future<String> summarize({
     required String content,
     required String length,
+    required String token,
   }) async {
     try {
-      final model = GenerativeModel(
-        model: 'gemini-3.6-flash',
-        apiKey: _apiKey,
+      final response = await http.post(
+        Uri.parse('$_baseUrl/api/summaries/generate'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+        body: jsonEncode({
+          'content': content,
+          'length': length,
+        }),
       );
 
-      int wordLimit = length == 'short' ? 80 : length == 'medium' ? 150 : 250;
+      final data = jsonDecode(response.body);
 
-      final prompt = '''
-You are an academic note summarizer for students.
-Summarize the following educational content in maximum $wordLimit words.
-Keep the most important concepts, key points, and definitions.
-Write in clear, simple English suitable for students.
-Do not add any introduction like "Here is a summary" - just write the summary directly.
+      if (response.statusCode == 200) {
+        return data['summary']?.toString() ??
+            'Could not generate summary. Please try again.';
+      }
 
-Content to summarize:
-$content
-''';
-
-      final response = await model.generateContent([Content.text(prompt)]);
-      return response.text ?? 'Could not generate summary. Please try again.';
-    }  catch (e) {
-  print('Gemini Error: $e');
-  return 'Error: $e';
-  }
+      return data['message']?.toString() ??
+          data['error']?.toString() ??
+          'Summary request failed (${response.statusCode}).';
+    } catch (e) {
+      return 'Could not connect to the server. Please try again.';
+    }
   }
 }
