@@ -1,7 +1,10 @@
 ﻿const mysql = require('mysql2');
 require('dotenv').config();
 
-const useSSL = process.env.DB_SSL === 'true';
+const isLocal = ['localhost', '127.0.0.1'].includes(process.env.DB_HOST);
+const useSSL = process.env.DB_SSL
+  ? process.env.DB_SSL === 'true'
+  : !isLocal;
 
 const db = mysql.createPool({
   host: process.env.DB_HOST,
