@@ -52,7 +52,7 @@ router.post('/generate', verifyToken, async (req, res) => {
     const ai = new GoogleGenAI({ apiKey });
 
     const response = await ai.models.generateContent({
-      model: process.env.GEMINI_MODEL || 'gemini-3.8-flash',
+      model: process.env.GEMINI_MODEL || 'gemini-3.6-flash',
       contents: `Summarize the following notes in clear language.
 ${getLengthInstruction(length)}
 
