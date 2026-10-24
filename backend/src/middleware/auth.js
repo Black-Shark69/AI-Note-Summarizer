@@ -2,10 +2,14 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const verifyToken = (req, res, next) => {
-  const token = req.headers['authorization'];
+  let token = req.headers['authorization'];
 
   if (!token) {
     return res.status(403).json({ message: 'No token provided' });
+  }
+
+  if (token.startsWith('Bearer ')) {
+    token = token.slice(7);
   }
 
   try {
@@ -14,6 +18,7 @@ const verifyToken = (req, res, next) => {
     req.userRole = decoded.role;
     next();
   } catch (err) {
+    console.error('JWT error:', err.name, err.message);
     return res.status(401).json({ message: 'Invalid or expired token' });
   }
 };
