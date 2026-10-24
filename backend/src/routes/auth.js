@@ -15,13 +15,19 @@ router.post('/register', (req, res) => {
 
   const checkEmail = 'SELECT * FROM users WHERE email = ?';
   db.query(checkEmail, [email], (err, results) => {
-    if (err) return res.status(500).json({ message: 'Database error' });
+    if (err) {
+  console.error('Auth DB error:', err.code, err.message);
+  return res.status(500).json({ message: 'Database error' });
+}
     if (results.length > 0) return res.status(400).json({ message: 'Email already exists' });
 
     const hashedPassword = bcrypt.hashSync(password, 10);
     const sql = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
     db.query(sql, [name, email, hashedPassword], (err, result) => {
-      if (err) return res.status(500).json({ message: 'Registration failed' });
+      if (err) {
+  console.error('Auth DB error:', err.code, err.message);
+  return res.status(500).json({ message: 'Registration failed' });
+}
       res.status(201).json({ message: 'User registered successfully' });
     });
   });
